@@ -1,0 +1,61 @@
+@keyframes background-blur {
+    to {
+      backdrop-filter: blur(4px);
+       
+    }
+  }
+  
+  
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes mount {
+    to {
+      opacity: 1;
+    } 
+  }
+  
+  .mountAnimation{ 
+    animation: mount 0.9s forwards;
+  }
+  
+   
+  .show{
+      transition: all;
+      opacity: 1;
+      transition-duration: 300ms;
+      overflow-y: auto;
+      
+  }
+  
+  
+  .hide{
+      transition: all;
+      opacity: 0;
+      transition-duration: 300ms;
+     
+  }
+  
+  
+  .showFromTop {
+    transition: opacity 100ms, transform 100ms;
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .showFromBottom {
+    transition: opacity 200ms, transform 200ms;
+    opacity: 1;
+    transform: translateY(0); 
+  }
+  
+  .hideFromBottom {
+    transition: opacity 100ms, transform 100ms, visibility 100ms;
+    opacity: 0;
+    transform: translateY(20px); /* Adjust based on desired effect */
+    visibility: hidden;
+  }
