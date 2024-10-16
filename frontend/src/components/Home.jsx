@@ -56,7 +56,6 @@ function Home() {
         const lastMsg = document.querySelector('.lastMsg');
         if (lastMsg) {
           lastMsg.scrollIntoView({ behavior: 'smooth' });
-        lastMsg.classList.add('opacity-100')
         lastMsg.classList.add('scale-100')
 
         }
@@ -200,7 +199,7 @@ function Home() {
                             className={`flex mb-2 ${msgObject.sender?.userId === loggedInUser._id ? 'justify-end ' : 'justify-start'}`}
                         >
                             <div
-                                className={` ${index == messages.length-1 ? "lastMsg transition-all duration-500 transform scale-0 opacity-50" : ""}    relative max-w-[75%] p-2 rounded-lg text-white ${msgObject.sender.userId === loggedInUser._id
+                                className={` ${index == messages.length-1 ? "lastMsg transition-all duration-300 transform scale-0" : ""}    relative max-w-[75%] p-2 rounded-lg text-white ${msgObject.sender.userId === loggedInUser._id
                                         ? 'bg-purple-600 rounded-tr-none'
                                         : 'bg-pink-600 rounded-tl-none '
                                     }`}
