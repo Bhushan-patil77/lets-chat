@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { io } from 'socket.io-client';
 import ting from '../assets/pop.mp3'
-const socket = io('http://localhost:8080/');
+const socket = io('https://lets-chat-backend-od7s.onrender.com');
 
 
 
@@ -127,7 +127,7 @@ function Home() {
 
 
     const getUsers = () => {
-        fetch('http://localhost:8080/getUsers')
+        fetch('https://lets-chat-backend-od7s.onrender.com/getUsers')
             .then((response) => { return response.json() })
             .then((data) => {
                 if (data.message == 'all users') {
@@ -156,7 +156,7 @@ function Home() {
 
     const getRecipient = (userId) => {
         
-        fetch('http://localhost:8080/getRecipient', { method: 'post', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ userId: userId }) })
+        fetch('https://lets-chat-backend-od7s.onrender.com/getRecipient', { method: 'post', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ userId: userId }) })
             .then((response) => { return response.json() })
             .then((data) => {
                 setRecipient(data.user) 

@@ -19,7 +19,7 @@ function Register() {
         user.socketId=''
         user.status='offline'
 
-             fetch('http://localhost:8080/registerUser', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(user) })
+             fetch('https://lets-chat-backend-od7s.onrender.com/registerUser', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(user) })
             .then((response) => { return response.json() })
             .then((data) => {
                 console.log(data);
