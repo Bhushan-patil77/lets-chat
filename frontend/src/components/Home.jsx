@@ -172,55 +172,105 @@ function Home() {
 
     return (
 
-        <div className='flex gap-2 w-screen h-screen p-2'>
-            <div className="recentChats overflow-y-auto flex gap-2 flex-col rounded-lg w-[20%] p-2 bg-slate-600">
+    <div className="flex h-screen bg-gray-900 text-gray-100">
+        {/* Sidebar (Recent Chats) */}
+        <div className="w-1/3 border-r border-gray-700 bg-gray-800">
+          <div className="flex items-center justify-between p-4 bg-gray-800">
+            <h2 className="text-lg font-semibold text-gray-200">Chats</h2>
+            <button className="text-blue-400 hover:text-blue-600">New Chat</button>
+          </div>
 
-                {
-                    connectedUsers && connectedUsers.map((user, index) => (
-                        <div key={index} className={` ${loggedInUser.username === user.username ? 'hidden' : 'flex'} items-center gap-4 p-3 border  ${onlineUsers.includes(user._id) ? 'bg-green-400' : 'bg-slate-400'}  cursor-pointer rounded-lg hover:bg-gray-100 transition duration-200`} onClick={() => { getRecipient(user._id), localStorage.setItem('clickedUser', user._id) }} >
-                            <span className='profilePhoto w-[50px] h-[50px] border border-gray-300 rounded-full bg-gray-300 flex items-center justify-center'>
-                                {/* <span className='text-gray-600 font-semibold'>{user.username.charAt(0)}</span> */} {user._id in unreadMsgObj ? `${unreadMsgObj[user._id]}` : ''}
-                            </span>
-                            <span className='userName text-gray-800 font-semibold'>{user.username}</span>
-                        </div>
-                    ))
-
-
-                }
-
+          {/* Recent Chats List */}
+          <div className="overflow-y-auto h-full">
+            {/* Chat Item */}
+            <div className="p-4 border-b border-gray-700 cursor-pointer hover:bg-gray-700">
+              <div className="flex items-center">
+                <img
+                  src="https://via.placeholder.com/40"
+                  alt="Profile"
+                  className="w-12 h-12 rounded-full"
+                />
+                <div className="ml-3 flex-1">
+                  <div className="flex justify-between items-center">
+                    <h3 className="font-semibold text-gray-200">John Doe</h3>
+                    <span className="text-xs text-gray-400">10:30 AM</span>
+                  </div>
+                  <p className="text-sm text-gray-400 truncate">Hey, how are you?</p>
+                </div>
+              </div>
             </div>
 
-            <div className="chatWindowAndInputBox rounded-lg flex flex-col gap-2 w-[80%] h-full">
-                <div className="chat border h-full rounded-lg bg-slate-600 p-4 overflow-y-auto">
-                    {messages.map((msgObject, index) => (
-
-                        <div
-                            key={index}
-                            className={`flex mb-2 ${msgObject.sender?.userId === loggedInUser._id ? 'justify-end ' : 'justify-start'}`}
-                        >
-                            <div
-                                className={` ${index == messages.length-1 ? "lastMsg transition-all duration-300 transform scale-0" : ""}    relative max-w-[75%] p-2 rounded-lg text-white ${msgObject.sender.userId === loggedInUser._id
-                                        ? 'bg-purple-600 rounded-tr-none'
-                                        : 'bg-pink-600 rounded-tl-none '
-                                    }`}
-                            >
-                                {msgObject.content}
-                            </div>
-
-
-                        </div>
-
-                        
-                    ))}
+            <div className="p-4 border-b border-gray-700 cursor-pointer hover:bg-gray-700">
+              <div className="flex items-center">
+                <img
+                  src="https://via.placeholder.com/40"
+                  alt="Profile"
+                  className="w-12 h-12 rounded-full"
+                />
+                <div className="ml-3 flex-1">
+                  <div className="flex justify-between items-center">
+                    <h3 className="font-semibold text-gray-200">Jane Smith</h3>
+                    <span className="text-xs text-gray-400">9:15 AM</span>
+                  </div>
+                  <p className="text-sm text-gray-400 truncate">Let's catch up later!</p>
                 </div>
-
-
-                <div className='flex justify-between gap-2 h-[50px] w-full'>
-                    <input className='w-full rounded-lg text-lg pl-2 bg-slate-600' type="text" placeholder={loggedInUser.username} value={message} onChange={(e) => setMessage(e.target.value)} />
-                    <button className='bg-slate-600 text-white font-semibold px-6 rounded-lg' onClick={sendMessage}>Send</button>
-                </div>
+              </div>
             </div>
+          </div>
         </div>
+
+        {/* Chat Window */}
+        <div className="flex-1 flex flex-col">
+          {/* Chat Header */}
+          <div className="flex items-center justify-between p-4 border-b border-gray-700 bg-gray-800">
+            <div className="flex items-center">
+              <img
+                src="https://via.placeholder.com/40"
+                alt="Chat Profile"
+                className="w-12 h-12 rounded-full"
+              />
+              <div className="ml-3">
+                <h3 className="font-semibold text-gray-200">John Doe</h3>
+                <p className="text-xs text-gray-400">Online</p>
+              </div>
+            </div>
+            <button className="text-blue-400 hover:text-blue-600">More</button>
+          </div>
+
+          {/* Messages Section */}
+          <div className="flex-1 overflow-y-auto p-4 bg-gray-900">
+            {/* Message bubble (incoming) */}
+            <div className="mb-4">
+              <div className="bg-gray-800 p-3 rounded-lg max-w-xs">
+                <p className="text-sm text-gray-200">Hello! How's it going?</p>
+              </div>
+              <span className="text-xs text-gray-400">10:30 AM</span>
+            </div>
+
+            {/* Message bubble (outgoing) */}
+            <div className="mb-4 text-right">
+              <div className="bg-blue-500 text-white p-3 rounded-lg max-w-xs ml-auto">
+                <p className="text-sm">All good! You?</p>
+              </div>
+              <span className="text-xs text-gray-400">10:32 AM</span>
+            </div>
+          </div>
+
+          {/* Input Section */}
+          <div className="border-t border-gray-700 p-4 bg-gray-800">
+            <div className="flex">
+              <input
+                type="text"
+                className="flex-1 border border-gray-600 rounded-l-lg p-2 bg-gray-700 text-gray-100 placeholder-gray-400 focus:outline-none"
+                placeholder="Type a message..."
+              />
+              <button className="bg-blue-500 text-white p-2 rounded-r-lg hover:bg-blue-600">
+                Send
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     )
 }
 
